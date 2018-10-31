@@ -13,7 +13,7 @@ npm install a-star-pathfind
 * 代码示例
 ```
 let pathFind = require("a-star-pathfind")
-let pathFind = new pathFind();
+let pathFind = new pathFind.default();
 
 let tiles = [];
 for (let i = 0; i < 10; i++) {
