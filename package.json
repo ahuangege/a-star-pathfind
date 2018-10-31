@@ -1,0 +1,21 @@
+{
+  "name": "a-star-pathfind",
+  "version": "1.0.0",
+  "description": "a star pathfind",
+  "main": "index.js",
+  "homepage": "https://github.com/ahuangege/a-star-pathfind.git",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "star",
+    "a star",
+    "pathfind"
+  ],
+  "author": "ahuang",
+  "types": "./src/pathFinding.ts",
+  "license": "ISC"
+}
