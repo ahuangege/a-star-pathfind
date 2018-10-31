@@ -1,21 +1,49 @@
 {
-  "name": "a-star-pathfind",
-  "version": "1.0.0",
+  "_from": "a-star-pathfind",
+  "_id": "a-star-pathfind@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-TBMq06q/GYF4UkfaAsc2NB/GqjljzLxQG9POM5EiQ2XgDRyLS38Ed5LhTIlrpP+G6+Oum1qwvjFM5GLJ0cPmZg==",
+  "_location": "/a-star-pathfind",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "a-star-pathfind",
+    "name": "a-star-pathfind",
+    "escapedName": "a-star-pathfind",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/a-star-pathfind/-/a-star-pathfind-1.0.0.tgz",
+  "_shasum": "b319aba649fde55a4f4c3281580f6d01260fede9",
+  "_spec": "a-star-pathfind",
+  "_where": "E:\\tsDemo\\first",
+  "author": {
+    "name": "ahuang"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
   "description": "a star pathfind",
-  "main": "index.js",
-  "homepage": "https://github.com/ahuangege/a-star-pathfind.git",
   "directories": {
     "example": "example"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "homepage": "https://github.com/ahuangege/a-star-pathfind.git",
   "keywords": [
     "star",
     "a star",
     "pathfind"
   ],
-  "author": "ahuang",
+  "license": "ISC",
+  "main": "index.js",
+  "name": "a-star-pathfind",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "types": "./src/pathFinding.ts",
-  "license": "ISC"
+  "version": "1.1.0"
 }
