@@ -1,1 +1,1 @@
-module.exports = require('./dist/pathFinding.js').default;
+module.exports = require('./dist/pathFinding.js');
