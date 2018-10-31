@@ -119,41 +119,29 @@ var a_star_pathfind = /** @class */ (function () {
             }
             var neighbors = this.getNeighbors(oneTile);
             for (var i = 0; i < neighbors.length; i++) {
-                var neighborTile = neighbors[i];
-                if (neighborTile.val === 0) {
-                    continue;
-                }
+                var neighbor = neighbors[i];
                 // 搜索序号不是本次的，重置
-                if (neighborTile.index !== findIndex) {
-                    neighborTile.index = findIndex;
-                    neighborTile.state = 0 /* clean */;
+                if (neighbor.index !== findIndex) {
+                    neighbor.index = findIndex;
+                    neighbor.state = 0 /* clean */;
                 }
-                if (neighborTile.state === 2 /* closed */) {
+                if (neighbor.state === 2 /* closed */) {
                     continue;
                 }
-                var distance = 1;
-                if (oneTile.x !== neighborTile.x && oneTile.y !== neighborTile.y) {
-                    if (tiles[oneTile.y][neighborTile.x].val !== 0 || tiles[neighborTile.y][oneTile.x].val !== 0) {
-                        distance = 1.414;
-                    }
-                    else {
-                        continue;
-                    }
+                var distance = (oneTile.x === neighbor.x || oneTile.y === neighbor.y) ? neighbor.val : 1.414 * neighbor.val;
+                if (neighbor.state === 0 /* clean */) {
+                    neighbor.g_s = oneTile.g_s + distance;
+                    neighbor.h_s = this.heuristicFunc(neighbor.x, neighbor.y, ex, ey);
+                    neighbor.f_s = neighbor.g_s + neighbor.h_s;
+                    neighbor.state = 1 /* open */;
+                    neighbor.pre = oneTile;
+                    openList.enqueue(neighbor);
                 }
-                distance = distance * neighborTile.val;
-                if (neighborTile.state === 0 /* clean */) {
-                    neighborTile.g_s = oneTile.g_s + distance;
-                    neighborTile.h_s = this.heuristicFunc(neighborTile.x, neighborTile.y, ex, ey);
-                    neighborTile.f_s = neighborTile.g_s + neighborTile.h_s;
-                    neighborTile.state = 1 /* open */;
-                    neighborTile.pre = oneTile;
-                    openList.enqueue(neighborTile);
-                }
-                else if (oneTile.g_s + distance < neighborTile.g_s) {
-                    neighborTile.g_s = oneTile.g_s + distance;
-                    neighborTile.f_s = neighborTile.g_s + neighborTile.h_s;
-                    neighborTile.pre = oneTile;
-                    openList.rescore(neighborTile);
+                else if (oneTile.g_s + distance < neighbor.g_s) {
+                    neighbor.g_s = oneTile.g_s + distance;
+                    neighbor.f_s = neighbor.g_s + neighbor.h_s;
+                    neighbor.pre = oneTile;
+                    openList.rescore(neighbor);
                 }
             }
         }
@@ -171,43 +159,45 @@ var a_star_pathfind = /** @class */ (function () {
      * @param tile
      */
     a_star_pathfind.prototype.getNeighbors = function (tile) {
-        var neighbors = [];
-        var x = tile.x;
-        var y = tile.y;
-        var tiles = this.tiles;
-        // 左
-        if (tiles[y][x - 1]) {
-            neighbors.push(tiles[y][x - 1]);
-        }
+        var neighbors = [], x = tile.x, y = tile.y, tiles = this.tiles, l = false, r = false, u = false, d = false, max_x = this.max_x, max_y = this.max_y;
         // 右
-        if (tiles[y][x + 1]) {
+        if (x + 1 <= max_x && tiles[y][x + 1].val !== 0) {
             neighbors.push(tiles[y][x + 1]);
+            r = true;
         }
-        // 下
-        if (tiles[y - 1]) {
-            neighbors.push(tiles[y - 1][x]);
+        // 左
+        if (x - 1 >= 0 && tiles[y][x - 1].val !== 0) {
+            neighbors.push(tiles[y][x - 1]);
+            l = true;
         }
         // 上
-        if (tiles[y + 1]) {
+        if (y + 1 <= max_y && tiles[y + 1][x].val !== 0) {
             neighbors.push(tiles[y + 1][x]);
+            u = true;
         }
-        if (this.allowDiagonal) {
-            // 左下
-            if (tiles[y - 1] && tiles[y - 1][x - 1]) {
-                neighbors.push(tiles[y - 1][x - 1]);
-            }
-            // 右下
-            if (tiles[y - 1] && tiles[y - 1][x + 1]) {
-                neighbors.push(tiles[y - 1][x + 1]);
-            }
-            // 左上
-            if (tiles[y + 1] && tiles[y + 1][x - 1]) {
-                neighbors.push(tiles[y + 1][x - 1]);
-            }
-            // 右上
-            if (tiles[y + 1] && tiles[y + 1][x + 1]) {
-                neighbors.push(tiles[y + 1][x + 1]);
-            }
+        // 下
+        if (y - 1 >= 0 && tiles[y - 1][x].val !== 0) {
+            neighbors.push(tiles[y - 1][x]);
+            d = true;
+        }
+        if (!this.allowDiagonal) {
+            return neighbors;
+        }
+        // 左下
+        if (l && d && tiles[y - 1][x - 1].val !== 0) {
+            neighbors.push(tiles[y - 1][x - 1]);
+        }
+        // 右下
+        if (r && d && tiles[y - 1][x + 1].val !== 0) {
+            neighbors.push(tiles[y - 1][x + 1]);
+        }
+        // 左上
+        if (l && u && tiles[y + 1][x - 1].val !== 0) {
+            neighbors.push(tiles[y + 1][x - 1]);
+        }
+        // 右上
+        if (r && u && tiles[y + 1][x + 1].val !== 0) {
+            neighbors.push(tiles[y + 1][x + 1]);
         }
         return neighbors;
     };
