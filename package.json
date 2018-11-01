@@ -1,8 +1,8 @@
 {
   "_from": "a-star-pathfind",
-  "_id": "a-star-pathfind@1.0.0",
+  "_id": "a-star-pathfind@1.3.0",
   "_inBundle": false,
-  "_integrity": "sha512-TBMq06q/GYF4UkfaAsc2NB/GqjljzLxQG9POM5EiQ2XgDRyLS38Ed5LhTIlrpP+G6+Oum1qwvjFM5GLJ0cPmZg==",
+  "_integrity": "sha512-Nvmt56xKTjdnZOnLNd8n9rhSfb3dP3o63YWx+XhttrVicFEv9diqgvJd+cWhxybSLUsH/TtRXKoj241xIuNdug==",
   "_location": "/a-star-pathfind",
   "_phantomChildren": {},
   "_requested": {
@@ -19,8 +19,8 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/a-star-pathfind/-/a-star-pathfind-1.0.0.tgz",
-  "_shasum": "b319aba649fde55a4f4c3281580f6d01260fede9",
+  "_resolved": "https://registry.npmjs.org/a-star-pathfind/-/a-star-pathfind-1.3.0.tgz",
+  "_shasum": "b20c8173dfd4b85e6c6270bde5a3988ea7603b74",
   "_spec": "a-star-pathfind",
   "_where": "E:\\tsDemo\\first",
   "author": {
@@ -45,5 +45,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "./src/pathFinding.ts",
-  "version": "1.3.0"
+  "version": "1.4.0"
 }
