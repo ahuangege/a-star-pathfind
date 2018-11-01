@@ -184,19 +184,19 @@ var a_star_pathfind = /** @class */ (function () {
             return neighbors;
         }
         // 左下
-        if (l && d && tiles[y - 1][x - 1].val !== 0) {
+        if ((l || d) && x - 1 >= 0 && y - 1 >= 0 && tiles[y - 1][x - 1].val !== 0) {
             neighbors.push(tiles[y - 1][x - 1]);
         }
         // 右下
-        if (r && d && tiles[y - 1][x + 1].val !== 0) {
+        if ((r || d) && y - 1 >= 0 && x + 1 <= max_x && tiles[y - 1][x + 1].val !== 0) {
             neighbors.push(tiles[y - 1][x + 1]);
         }
         // 左上
-        if (l && u && tiles[y + 1][x - 1].val !== 0) {
+        if ((l || u) && y + 1 <= max_y && x - 1 >= 0 && tiles[y + 1][x - 1].val !== 0) {
             neighbors.push(tiles[y + 1][x - 1]);
         }
         // 右上
-        if (r && u && tiles[y + 1][x + 1].val !== 0) {
+        if ((r || u) && y + 1 <= max_y && x + 1 <= max_x && tiles[y + 1][x + 1].val !== 0) {
             neighbors.push(tiles[y + 1][x + 1]);
         }
         return neighbors;
