@@ -1,8 +1,8 @@
 {
   "_from": "a-star-pathfind",
-  "_id": "a-star-pathfind@1.3.0",
+  "_id": "a-star-pathfind@1.4.0",
   "_inBundle": false,
-  "_integrity": "sha512-Nvmt56xKTjdnZOnLNd8n9rhSfb3dP3o63YWx+XhttrVicFEv9diqgvJd+cWhxybSLUsH/TtRXKoj241xIuNdug==",
+  "_integrity": "sha512-LtS5E2XQBTnWw3Nqr9J1i3mZeaXxIuUZvv32FK/nuUZmROzbGKFE0n+Ro6zLEycWISeXcjhfwV243tTgH7C3ZQ==",
   "_location": "/a-star-pathfind",
   "_phantomChildren": {},
   "_requested": {
@@ -19,10 +19,10 @@
     "#USER",
     "/"
   ],
-  "_resolved": "https://registry.npmjs.org/a-star-pathfind/-/a-star-pathfind-1.3.0.tgz",
-  "_shasum": "b20c8173dfd4b85e6c6270bde5a3988ea7603b74",
+  "_resolved": "https://registry.npmjs.org/a-star-pathfind/-/a-star-pathfind-1.4.0.tgz",
+  "_shasum": "64be07b0a3fdbed35a2a793789a0d7c66aa5126f",
   "_spec": "a-star-pathfind",
-  "_where": "E:\\tsDemo\\first",
+  "_where": "E:\\nodejs\\aoiTest\\server",
   "author": {
     "name": "ahuang"
   },
@@ -45,5 +45,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "types": "./src/pathFinding.ts",
-  "version": "1.4.0"
+  "version": "1.5.1"
 }

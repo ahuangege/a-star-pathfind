@@ -41,13 +41,13 @@ var a_star_pathfind = /** @class */ (function () {
         }
         this.max_y = tiles.length - 1;
         this.max_x = tiles[0].length - 1;
-        for (var i = 0; i <= this.max_y; i++) {
-            this.tiles[i] = [];
-            for (var j = 0; j <= this.max_x; j++) {
-                this.tiles[i][j] = {
-                    x: j,
-                    y: i,
-                    val: tiles[i][j],
+        for (var j = 0; j <= this.max_y; j++) {
+            this.tiles[j] = [];
+            for (var i = 0; i <= this.max_x; i++) {
+                this.tiles[j][i] = {
+                    x: i,
+                    y: j,
+                    val: tiles[j][i],
                     state: 0 /* clean */,
                     f_s: 0,
                     g_s: 0,
@@ -81,11 +81,11 @@ var a_star_pathfind = /** @class */ (function () {
     a_star_pathfind.prototype.findPath = function (sx, sy, ex, ey) {
         if (sx < 0 || sx > this.max_x || sy < 0 || sy > this.max_y) {
             console.warn("findPath out of range start pos(" + sx + "," + sy + ")");
-            return [];
+            return null;
         }
         if (ex < 0 || ex > this.max_x || ey < 0 || ey > this.max_y) {
             console.warn("findPath out of range end pos (" + ex + "," + ey + ")");
-            return [];
+            return null;
         }
         var tiles = this.tiles;
         var startTile = tiles[sy][sx];

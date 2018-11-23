@@ -45,13 +45,13 @@ export default class a_star_pathfind {
         this.max_y = tiles.length - 1;
         this.max_x = tiles[0].length - 1;
 
-        for (let i = 0; i <= this.max_y; i++) {
-            this.tiles[i] = [];
-            for (let j = 0; j <= this.max_x; j++) {
-                this.tiles[i][j] = {
-                    x: j,
-                    y: i,
-                    val: tiles[i][j],
+        for (let j = 0; j <= this.max_y; j++) {
+            this.tiles[j] = [];
+            for (let i = 0; i <= this.max_x; i++) {
+                this.tiles[j][i] = {
+                    x: i,
+                    y: j,
+                    val: tiles[j][i],
                     state: tileState.clean,
                     f_s: 0,
                     g_s: 0,
@@ -87,11 +87,11 @@ export default class a_star_pathfind {
     findPath(sx: number, sy: number, ex: number, ey: number) {
         if (sx < 0 || sx > this.max_x || sy < 0 || sy > this.max_y) {
             console.warn("findPath out of range start pos(" + sx + "," + sy + ")");
-            return [];
+            return null;
         }
         if (ex < 0 || ex > this.max_x || ey < 0 || ey > this.max_y) {
             console.warn("findPath out of range end pos (" + ex + "," + ey + ")");
-            return [];
+            return null;
         }
 
         let tiles = this.tiles;
