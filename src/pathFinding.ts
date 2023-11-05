@@ -293,7 +293,13 @@ class queue {
         }
         this.arr[index] = this.arr[this.arr.length - 1];
         this.arr.pop();
-        this.rescore(this.arr[index]);
+
+        const parentIdx = Math.floor((index - 1) / 2);
+        if (this.arr[index] && this.arr[parentIdx] && this.arr[index].f_s < this.arr[parentIdx].f_s) {
+            this.move_up(index);
+        } else {
+            this.move_down(index);
+        }
     }
 
     rescore(tile: tile) {
@@ -301,8 +307,6 @@ class queue {
         if (index === -1) {
             return;
         }
-        this.arr[index] = this.arr[this.arr.length - 1];
-        this.arr.pop();
 
         const parentIdx = Math.floor((index - 1) / 2);
         if (this.arr[index] && this.arr[parentIdx] && this.arr[index].f_s < this.arr[parentIdx].f_s) {
