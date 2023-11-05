@@ -264,17 +264,13 @@ class queue {
 
     private arr: tile[] = []
 
-    /**
-     * 入栈
-     */
+
     enqueue(tile: tile) {
         this.arr.push(tile);
         this.move_up(this.arr.length - 1);
     }
 
-    /**
-     * 出栈
-     */
+
     dequeue(): tile {
         if (this.arr.length === 0) {
             return undefined as any;
@@ -286,9 +282,10 @@ class queue {
         return min;
     }
 
-    /**
-     * 移除
-     */
+    peek() {
+        return this.arr[0];
+    }
+
     remove(tile: tile) {
         let index = this.arr.indexOf(tile);
         if (index === -1) {
@@ -296,24 +293,29 @@ class queue {
         }
         this.arr[index] = this.arr[this.arr.length - 1];
         this.arr.pop();
-        this.move_down(index);
+        this.rescore(this.arr[index]);
     }
 
-    /**
-     * 赋值更小值时，重新计算
-     */
     rescore(tile: tile) {
         let index = this.arr.indexOf(tile);
         if (index === -1) {
             return;
         }
-        this.move_up(index);
+        this.arr[index] = this.arr[this.arr.length - 1];
+        this.arr.pop();
+
+        const parentIdx = Math.floor((index - 1) / 2);
+        if (this.arr[index] && this.arr[parentIdx] && this.arr[index].f_s < this.arr[parentIdx].f_s) {
+            this.move_up(index);
+        } else {
+            this.move_down(index);
+        }
     }
 
     private move_up(idx: number) {
         let parentIdx = Math.floor((idx - 1) / 2);
         while (0 <= parentIdx) {
-            if (this.arr[idx].f_s > this.arr[parentIdx].f_s) {
+            if (this.arr[idx].f_s >= this.arr[parentIdx].f_s) {
                 break;
             }
             let tmp = this.arr[idx]
@@ -348,9 +350,6 @@ class queue {
         }
     }
 
-    /**
-     * 长度
-     */
     getLen() {
         return this.arr.length;
     }
